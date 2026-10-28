@@ -1,0 +1,1187 @@
+{
+ "url": "http://localhost:5173",
+ "at": "2026-10-28T06:33:59.287Z",
+ "allow": [],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 1,
+   "filled": [
+    1
+   ],
+   "motion": {
+    "elements": 9,
+    "css": 6,
+    "transitions": 3,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 900,
+     "screens": 1,
+     "words": 65,
+     "img": 5,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 1,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 4,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "badminton-ball-13550266595.jpg",
+      "badminton-ball-12337125033.jpg",
+      "playing-battledore-and-shuttlecock.jpg",
+      "girl-and-a-hagoita-japanese-battledore-and.jpg"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "BADMINTON LEAGUE",
+     "words": 2,
+     "chars": 16,
+     "lines": 2,
+     "size": 96,
+     "vw": 6.7,
+     "font": "Zodiak",
+     "weight": 300,
+     "tracking": -0.025,
+     "leading": 0.95,
+     "upper": true,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "left",
+     "widthRatio": 0.52,
+     "top": 138,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "BADMINTON LEAGUE",
+     "words": 2,
+     "lines": 2,
+     "size": 96,
+     "font": "Zodiak"
+    },
+    "headings": [
+     {
+      "text": "BADMINTON LEAGUE",
+      "words": 2,
+      "chars": 16,
+      "lines": 2,
+      "size": 96,
+      "vw": 6.7,
+      "font": "Zodiak",
+      "weight": 300,
+      "tracking": -0.025,
+      "leading": 0.95,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.52,
+      "top": 138,
+      "tag": "h1",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 1,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": null,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Hanken Grotesk",
+       "share": 0.96,
+       "mono": false
+      },
+      {
+       "family": "Zodiak",
+       "share": 0.04,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      14,
+      16,
+      20,
+      24,
+      96
+     ],
+     "sizeCount": 5,
+     "notLoaded": [],
+     "body": {
+      "font": "Hanken Grotesk",
+      "size": 20,
+      "leading": 1.63,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 8
+     },
+     "measureChars": 58,
+     "max": {
+      "size": 96,
+      "vw": 6.7,
+      "font": "Zodiak",
+      "text": "BADMINTON LEAGUE"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.05,
+     "centerShare": 0.03,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#090b0c",
+     "bodyBgHsl": {
+      "h": 200,
+      "s": 0.14,
+      "l": 0.04
+     },
+     "dark": true,
+     "sectionBgs": [
+      {
+       "color": "#6bb4ee",
+       "top": 0,
+       "hsl": {
+        "h": 207,
+        "s": 0.79,
+        "l": 0.68
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#1b3d5c",
+       "share": 0.58
+      },
+      {
+       "color": "#0e1822",
+       "share": 0.38
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.03
+      }
+     ],
+     "button": {
+      "bg": "#d94a0f",
+      "hsl": {
+       "h": 18,
+       "s": 0.87,
+       "l": 0.45
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": [
+      {
+       "text": "Masuk ke Panel",
+       "ratio": 4.3,
+       "need": 4.5,
+       "size": 16,
+       "fg": "#ffffff",
+       "bg": "#d94a0f"
+      }
+     ]
+    },
+    "buttons": {
+     "count": 1,
+     "inHero": 1,
+     "radius": 10,
+     "height": 48,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Masuk ke Panel"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 1,
+     "boxRadius": 18,
+     "squareMedia": 0,
+     "roundedMedia": 4,
+     "mediaRadius": 10,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 0,
+     "fixed": false,
+     "height": 64,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "hanken grotesk",
+     "zodiak"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "pageH": 900,
+    "margins": {
+     "left": 64,
+     "right": 64
+    },
+    "sections": [
+     {
+      "sel": "section.flex-1.grid",
+      "tag": "section",
+      "top": 64,
+      "height": 522,
+      "words": 41,
+      "media": 0,
+      "middle": 306,
+      "heading": {
+       "text": "BADMINTON",
+       "size": 96,
+       "tag": "h1"
+      },
+      "left": 64,
+      "right": 104,
+      "textLeft": 64,
+      "textRight": 104,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "div.hidden.md:grid",
+      "tag": "div",
+      "top": 586,
+      "height": 242,
+      "words": 0,
+      "media": 4,
+      "middle": 16,
+      "heading": null,
+      "left": 64,
+      "right": 64,
+      "textLeft": null,
+      "textRight": null,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "BADMINTON LEAGUE",
+      "size": 96,
+      "top": 138,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 64,
+      "n": 2
+     },
+     {
+      "x": 232,
+      "n": 1
+     },
+     {
+      "x": 968,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 4,
+    "bodySize": 20,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0.09,
+    "voidBox": {
+     "x": 300,
+     "y": 420,
+     "w": 660,
+     "h": 180
+    }
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 2,
+   "filled": [
+    1,
+    1
+   ],
+   "motion": {
+    "elements": 9,
+    "css": 6,
+    "transitions": 3,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 1163,
+     "screens": 1.1,
+     "words": 65,
+     "img": 5,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 1,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "BADMINTON LEAGUE",
+     "words": 2,
+     "chars": 16,
+     "lines": 2,
+     "size": 72,
+     "vw": 9.4,
+     "font": "Zodiak",
+     "weight": 300,
+     "tracking": -0.025,
+     "leading": 0.95,
+     "upper": true,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.88,
+     "top": 96,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "BADMINTON LEAGUE",
+     "words": 2,
+     "lines": 2,
+     "size": 72,
+     "font": "Zodiak"
+    },
+    "headings": [
+     {
+      "text": "BADMINTON LEAGUE",
+      "words": 2,
+      "chars": 16,
+      "lines": 2,
+      "size": 72,
+      "vw": 9.4,
+      "font": "Zodiak",
+      "weight": 300,
+      "tracking": -0.025,
+      "leading": 0.95,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.88,
+      "top": 96,
+      "tag": "h1",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 1,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": null,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Hanken Grotesk",
+       "share": 0.96,
+       "mono": false
+      },
+      {
+       "family": "Zodiak",
+       "share": 0.04,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      14,
+      16,
+      20,
+      24,
+      72
+     ],
+     "sizeCount": 5,
+     "notLoaded": [],
+     "body": {
+      "font": "Hanken Grotesk",
+      "size": 20,
+      "leading": 1.63,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 8
+     },
+     "measureChars": 58,
+     "max": {
+      "size": 72,
+      "vw": 9.4,
+      "font": "Zodiak",
+      "text": "BADMINTON LEAGUE"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.05,
+     "centerShare": 0.03,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#090b0c",
+     "bodyBgHsl": {
+      "h": 200,
+      "s": 0.14,
+      "l": 0.04
+     },
+     "dark": true,
+     "sectionBgs": [
+      {
+       "color": "#6bb4ee",
+       "top": 0,
+       "hsl": {
+        "h": 207,
+        "s": 0.79,
+        "l": 0.68
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#1b3d5c",
+       "share": 0.58
+      },
+      {
+       "color": "#0e1822",
+       "share": 0.38
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.03
+      }
+     ],
+     "button": {
+      "bg": "#d94a0f",
+      "hsl": {
+       "h": 18,
+       "s": 0.87,
+       "l": 0.45
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": [
+      {
+       "text": "Masuk ke Panel",
+       "ratio": 4.3,
+       "need": 4.5,
+       "size": 16,
+       "fg": "#ffffff",
+       "bg": "#d94a0f"
+      }
+     ]
+    },
+    "buttons": {
+     "count": 1,
+     "inHero": 1,
+     "radius": 10,
+     "height": 48,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Masuk ke Panel"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 1,
+     "boxRadius": 18,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 0,
+     "fixed": false,
+     "height": 64,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "hanken grotesk",
+     "zodiak"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "pageH": 1163,
+    "margins": {
+     "left": 48,
+     "right": 48
+    },
+    "sections": [
+     {
+      "sel": "section.flex-1.grid",
+      "tag": "section",
+      "top": 64,
+      "height": 852,
+      "words": 41,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "BADMINTON",
+       "size": 72,
+       "tag": "h1"
+      },
+      "left": 48,
+      "right": 111,
+      "textLeft": 48,
+      "textRight": 184,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "div.hidden.md:grid",
+      "tag": "div",
+      "top": 916,
+      "height": 152,
+      "words": 0,
+      "media": 0,
+      "middle": 16,
+      "heading": null,
+      "left": 48,
+      "right": 48,
+      "textLeft": null,
+      "textRight": null,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "BADMINTON LEAGUE",
+      "size": 72,
+      "top": 96,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 48,
+      "n": 3
+     },
+     {
+      "x": 200,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 4,
+    "bodySize": 20,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 2,
+   "filled": [
+    1,
+    1
+   ],
+   "motion": {
+    "elements": 8,
+    "css": 5,
+    "transitions": 3,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "page": {
+     "height": 1063,
+     "screens": 1.3,
+     "words": 65,
+     "img": 5,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 1,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "BADMINTON LEAGUE",
+     "words": 2,
+     "chars": 16,
+     "lines": 2,
+     "size": 48,
+     "vw": 12.3,
+     "font": "Zodiak",
+     "weight": 300,
+     "tracking": -0.025,
+     "leading": 0.95,
+     "upper": true,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.88,
+     "top": 84,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "BADMINTON LEAGUE",
+     "words": 2,
+     "lines": 2,
+     "size": 48,
+     "font": "Zodiak"
+    },
+    "headings": [
+     {
+      "text": "BADMINTON LEAGUE",
+      "words": 2,
+      "chars": 16,
+      "lines": 2,
+      "size": 48,
+      "vw": 12.3,
+      "font": "Zodiak",
+      "weight": 300,
+      "tracking": -0.025,
+      "leading": 0.95,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.88,
+      "top": 84,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "16",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 24,
+      "vw": 6.2,
+      "font": "Hanken Grotesk",
+      "weight": 500,
+      "tracking": 0,
+      "leading": 1.33,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.18,
+      "top": 363,
+      "tag": "span",
+      "kind": "heading"
+     },
+     {
+      "text": "48",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 24,
+      "vw": 6.2,
+      "font": "Hanken Grotesk",
+      "weight": 500,
+      "tracking": 0,
+      "leading": 1.33,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.27,
+      "top": 363,
+      "tag": "span",
+      "kind": "heading"
+     },
+     {
+      "text": "Masuk Akun",
+      "words": 2,
+      "chars": 10,
+      "lines": 1,
+      "size": 24,
+      "vw": 6.2,
+      "font": "Hanken Grotesk",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.33,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.71,
+      "top": 483,
+      "tag": "h2",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 4,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": 1,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Hanken Grotesk",
+       "share": 0.96,
+       "mono": false
+      },
+      {
+       "family": "Zodiak",
+       "share": 0.04,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      14,
+      16,
+      18,
+      20,
+      24,
+      48
+     ],
+     "sizeCount": 6,
+     "notLoaded": [],
+     "body": {
+      "font": "Hanken Grotesk",
+      "size": 18,
+      "leading": 1.63,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 8
+     },
+     "measureChars": 38,
+     "max": {
+      "size": 48,
+      "vw": 12.3,
+      "font": "Zodiak",
+      "text": "BADMINTON LEAGUE"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.05,
+     "centerShare": 0.03,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#090b0c",
+     "bodyBgHsl": {
+      "h": 200,
+      "s": 0.14,
+      "l": 0.04
+     },
+     "dark": true,
+     "sectionBgs": [
+      {
+       "color": "#6bb4ee",
+       "top": 0,
+       "hsl": {
+        "h": 207,
+        "s": 0.79,
+        "l": 0.68
+       }
+      },
+      {
+       "color": "#ffffff",
+       "top": 451,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 1
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#1b3d5c",
+       "share": 0.58
+      },
+      {
+       "color": "#0e1822",
+       "share": 0.38
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.03
+      }
+     ],
+     "button": {
+      "bg": "#d94a0f",
+      "hsl": {
+       "h": 18,
+       "s": 0.87,
+       "l": 0.45
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": [
+      {
+       "text": "Masuk ke Panel",
+       "ratio": 4.3,
+       "need": 4.5,
+       "size": 16,
+       "fg": "#ffffff",
+       "bg": "#d94a0f"
+      }
+     ]
+    },
+    "buttons": {
+     "count": 1,
+     "inHero": 1,
+     "radius": 10,
+     "height": 48,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Masuk ke Panel"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 1,
+     "boxRadius": 18,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 0,
+     "fixed": false,
+     "height": 52,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "hanken grotesk",
+     "zodiak"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "pageH": 1063,
+    "margins": {
+     "left": 24,
+     "right": 24
+    },
+    "sections": [
+     {
+      "sel": "section.flex-1.grid",
+      "tag": "section",
+      "top": 52,
+      "height": 859,
+      "words": 41,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "BADMINTON",
+       "size": 48,
+       "tag": "h1"
+      },
+      "left": 24,
+      "right": 44,
+      "textLeft": 24,
+      "textRight": 44,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.px-6.md:px-12",
+      "tag": "footer",
+      "top": 911,
+      "height": 152,
+      "words": 26,
+      "media": 0,
+      "middle": 0,
+      "heading": null,
+      "left": 24,
+      "right": 42,
+      "textLeft": 24,
+      "textRight": 42,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "BADMINTON LEAGUE",
+      "size": 48,
+      "top": 84,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 24,
+      "n": 2
+     },
+     {
+      "x": 56,
+      "n": 1
+     },
+     {
+      "x": 120,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 4,
+    "bodySize": 18,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  }
+ ],
+ "findings": [
+  {
+   "level": "WARN",
+   "id": "contrast",
+   "width": 1440,
+   "message": "Low-contrast text: \"Masuk ke Panel\" 4.3:1 needs 4.5:1",
+   "fix": "Darken or lighten the text colour.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "no-footage",
+   "width": 1440,
+   "message": "No video anywhere on the page.",
+   "fix": "Look for one honest clip with scripts/assets.mjs --video (the place, the material, the process) and use it as a muted loop with a poster frame. Defend its absence only if no clip fits the subject."
+  },
+  {
+   "level": "WARN",
+   "id": "dev-server",
+   "width": 1440,
+   "message": "This page is served by a development server (Vite, webpack or Next in dev mode).",
+   "fix": "Run the last gate on the production build too (vite build && vite preview, next build && next start, or the built index.html): minifiers and bundlers change the CSS a visitor receives.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "still-page",
+   "width": 1440,
+   "message": "Little motion: 9 element(s) moved while the page loaded and scrolled.",
+   "fix": "Give every section an entrance for its parts (not one fade of the whole block) and add one moving picture: a looping clip or a slow move on a photograph."
+  }
+ ],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "E:\\Programming\\LIBAS\\.taste-skill\\inspect\\desktop-fold.jpg",
+   "pages": [
+    "E:\\Programming\\LIBAS\\.taste-skill\\inspect\\desktop-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "E:\\Programming\\LIBAS\\.taste-skill\\inspect\\tablet-fold.jpg",
+   "pages": [
+    "E:\\Programming\\LIBAS\\.taste-skill\\inspect\\tablet-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "E:\\Programming\\LIBAS\\.taste-skill\\inspect\\mobile-fold.jpg",
+   "pages": [
+    "E:\\Programming\\LIBAS\\.taste-skill\\inspect\\mobile-page-01.jpg"
+   ],
+   "film": []
+  }
+ ]
+}
