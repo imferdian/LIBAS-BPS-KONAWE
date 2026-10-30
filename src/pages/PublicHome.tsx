@@ -10,8 +10,6 @@ import {
   Search,
   ChevronRight,
   ChevronLeft,
-  Menu,
-  X,
   LogIn,
   Flame,
   Swords,
@@ -92,7 +90,6 @@ function formatTimeOnly(dateString: string) {
 
 export default function PublicHome() {
   const [minimized, setMinimized] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<"dashboard" | "matches" | "standings" | "teams">("dashboard");
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -276,29 +273,12 @@ export default function PublicHome() {
   ];
 
   return (
-    <div className="flex h-screen bg-background font-sans overflow-hidden">
-      {/* Mobile Menu Trigger */}
-      <button
-        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        className="absolute left-4 top-4 z-50 rounded-md p-2 hover:bg-sidebar-accent lg:hidden"
-        aria-label="Toggle Menu"
-      >
-        {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-      </button>
-
-      {/* Mobile Backdrop */}
-      {mobileMenuOpen && (
-        <div
-          className="fixed inset-0 z-40 bg-black/50 lg:hidden"
-          onClick={() => setMobileMenuOpen(false)}
-        />
-      )}
-
-      {/* Sidebar */}
+    <div className="flex flex-col h-screen bg-background font-sans overflow-hidden lg:flex-row">
+      {/* Sidebar - Hidden on mobile */}
       <aside
-        className={`fixed left-0 top-0 z-40 flex h-screen flex-col bg-sidebar text-sidebar-foreground border-r border-sidebar-border transition-all duration-300 ease-out lg:relative lg:translate-x-0 ${
+        className={`hidden lg:flex fixed left-0 top-0 z-40 flex-col bg-sidebar text-sidebar-foreground border-r border-sidebar-border transition-all duration-300 ease-out h-screen ${
           minimized ? "w-16" : "w-64"
-        } ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}`}
+        }`}
       >
         {/* Brand */}
         <div className="flex items-center gap-2.5 p-4 border-b border-sidebar-border">
@@ -318,7 +298,7 @@ export default function PublicHome() {
           <button
             type="button"
             onClick={() => setMinimized(!minimized)}
-            className="ml-auto hidden rounded-md p-1.5 transition-colors hover:bg-sidebar-accent lg:inline-flex text-muted-foreground"
+            className="ml-auto rounded-md p-1.5 transition-colors hover:bg-sidebar-accent text-muted-foreground"
             aria-label={minimized ? "Expand sidebar" : "Collapse sidebar"}
           >
             {minimized ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
@@ -337,7 +317,6 @@ export default function PublicHome() {
                 type="button"
                 onClick={() => {
                   setActiveTab(item.key);
-                  setMobileMenuOpen(false);
                 }}
                 className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-xs font-medium transition-all duration-200 ${
                   isActive
@@ -387,9 +366,9 @@ export default function PublicHome() {
       </aside>
 
       {/* Main Content Area */}
-      <div className="flex flex-1 flex-col overflow-hidden">
+      <div className="flex flex-1 flex-col overflow-hidden w-full lg:ml-0" style={{ marginLeft: minimized && window.innerWidth >= 1024 ? "64px" : minimized ? "0" : window.innerWidth >= 1024 ? "256px" : "0" }}>
         {/* Top Header Bar (like reference) */}
-        <header className="flex h-16 items-center justify-between border-b border-border bg-card/60 backdrop-blur-md px-6 pl-14 lg:pl-6 shrink-0 gap-4">
+        <header className="flex h-16 items-center justify-between border-b border-border bg-card/60 backdrop-blur-md px-4 md:px-6 shrink-0 gap-4">
           <div>
             <h2 className="font-heading font-bold text-base md:text-lg flex items-center gap-2">
               Halo, Penggemar Badminton! 👋
@@ -414,7 +393,7 @@ export default function PublicHome() {
         </header>
 
         {/* Scrollable View Area */}
-        <main className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6">
+        <main className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6 pb-24 lg:pb-6 w-full">{/* pb-24 untuk space bottom nav mobile */}
           {loading ? (
             <div className="flex items-center justify-center py-24 text-muted-foreground text-sm">
               Memuat data liga...
@@ -887,6 +866,30 @@ export default function PublicHome() {
           )}
         </main>
       </div>
+
+      {/* Bottom Navigation - Mobile Only */}
+      <nav className="fixed bottom-0 left-0 right-0 z-40 flex h-16 items-center justify-around border-t border-border bg-card/95 backdrop-blur-sm lg:hidden">
+        {navItems.map((item) => {
+          const Icon = item.icon;
+          const isActive = activeTab === item.key;
+
+          return (
+            <button
+              key={item.key}
+              type="button"
+              onClick={() => setActiveTab(item.key)}
+              className={`flex flex-col items-center justify-center gap-1 py-2 px-3 transition-all duration-200 ${
+                isActive
+                  ? "text-primary"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              <Icon size={20} className="shrink-0" />
+              <span className="text-[10px] font-medium truncate">{item.label}</span>
+            </button>
+          );
+        })}
+      </nav>
     </div>
   );
 }
