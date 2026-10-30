@@ -25,8 +25,6 @@ export default function Login() {
       setError("Login gagal. Periksa kembali email dan kata sandi.");
       return;
     }
-
-    alert("Login berhasil!");
   }
 
   return (
@@ -90,7 +88,7 @@ export default function Login() {
               </div>
             </div>
           </h1>
-          
+
           <p className="text-lg md:text-xl text-[#0e1822] max-w-xl font-normal leading-relaxed">
             Pusat kendali operasional pertandingan, susunan jadwal turnamen,
             dan rekapitulasi poin atlet liga bulu tangkis resmi <br /> BPS Kabupaten Konawe.

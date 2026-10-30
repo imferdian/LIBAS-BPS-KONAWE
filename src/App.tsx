@@ -1,12 +1,16 @@
-// import { useState } from 'react'
 import { ThemeProvider } from "./components/theme-provider"
+import { Toaster } from "./components/ui/sonner"
 import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import type { Session } from "@supabase/supabase-js";
 import { createClient } from "./lib/client";
 import Login from "./pages/Login";
 import AdminDashboard from "./pages/AdminDashboard";
+import PublicHome from "./pages/PublicHome";
 
-
+function ProtectedRoute({ session, children }: { session: Session | null; children: React.ReactNode }) {
+  return session ? <>{children}</> : <Navigate to="/admin" replace />;
+}
 
 export default function App() {
   const [session, setSession] = useState<Session | null>(null);
@@ -49,10 +53,23 @@ export default function App() {
     );
   }
 
-  return session ? 
-  <ThemeProvider defaultTheme="dark" storageKey="">
-    <AdminDashboard />
-  </ThemeProvider> 
-  : 
-  <Login />;
+  return (
+    <ThemeProvider defaultTheme="dark" storageKey="">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<PublicHome />} />
+          <Route path="/admin" element={session ? <Navigate to="/admin/dashboard" replace /> : <Login />} />
+          <Route
+            path="/admin/dashboard"
+            element={
+              <ProtectedRoute session={session}>
+                <AdminDashboard />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+      <Toaster position="top-center" richColors />
+    </ThemeProvider>
+  );
 }
