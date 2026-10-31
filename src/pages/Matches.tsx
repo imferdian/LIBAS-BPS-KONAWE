@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { createClient } from "../lib/client";
 import { Calendar, Trophy, Plus, Trash2, Edit2, Save, Loader2 } from "lucide-react";
 import { toast } from "sonner";
@@ -6,6 +6,7 @@ import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "../components/ui/accordion";
 import {
   Dialog,
   DialogContent,
@@ -25,6 +26,7 @@ type MatchRow = {
   team1_id: string;
   team2_id: string;
   scheduled_at: string;
+  week_number: number | null;
   set1_team1: number | null;
   set1_team2: number | null;
   set2_team1: number | null;
@@ -38,6 +40,7 @@ type Match = {
   team1_id: string;
   team2_id: string;
   scheduled_at: string;
+  week_number: number | null;
   set1_team1: number | null;
   set1_team2: number | null;
   set2_team1: number | null;
@@ -175,6 +178,166 @@ function ScoreInput({
   );
 }
 
+// ─── MatchesByWeek ────────────────────────────────────────────────────────────
+
+interface MatchesByWeekProps {
+  matches: Match[];
+  onEdit: (match: Match) => void;
+  onDelete: (id: string) => void;
+}
+
+function MatchesByWeek({ matches, onEdit, onDelete }: MatchesByWeekProps) {
+  const weeks = useMemo(() => {
+    const weekSet = new Set<number>();
+    matches.forEach((m) => {
+      if (m.week_number !== null) weekSet.add(m.week_number);
+    });
+    return Array.from(weekSet).sort((a, b) => a - b);
+  }, [matches]);
+
+  const matchesByWeek = useMemo(() => {
+    const map = new Map<number, Match[]>();
+    weeks.forEach((w) => map.set(w, []));
+    matches.forEach((m) => {
+      if (m.week_number !== null && map.has(m.week_number)) {
+        map.get(m.week_number)!.push(m);
+      }
+    });
+    return map;
+  }, [matches, weeks]);
+
+  return (
+    <Accordion type="single" collapsible className="space-y-0">
+      {weeks.map((week) => (
+        <AccordionItem key={`week-${week}`} value={`week-${week}`} className="border-b-0">
+          <AccordionTrigger className="px-0 py-3 font-semibold text-sm hover:bg-transparent">
+            Minggu {week} ({matchesByWeek.get(week)?.length || 0} pertandingan)
+          </AccordionTrigger>
+          <AccordionContent className="px-0 pb-0">
+            <div className="space-y-2 divide-y divide-border/50">
+              {(matchesByWeek.get(week) || []).map((match, idx) => {
+                const hasScore =
+                  match.set1_team1 !== null && match.set1_team2 !== null;
+                const t1Wins =
+                  hasScore
+                    ? (match.set1_team1! > match.set1_team2! ? 1 : 0) +
+                      (match.set2_team1! > match.set2_team2! ? 1 : 0)
+                    : 0;
+                const t2Wins =
+                  hasScore
+                    ? (match.set1_team2! > match.set1_team1! ? 1 : 0) +
+                      (match.set2_team2! > match.set2_team1! ? 1 : 0)
+                    : 0;
+
+                const isDraw = hasScore && t1Wins === 1 && t2Wins === 1;
+                const isT1Winner = hasScore && t1Wins === 2;
+                const isT2Winner = hasScore && t2Wins === 2;
+
+                const scoreBadgeClass =
+                  isT1Winner || isT2Winner
+                    ? "border-primary bg-primary text-white"
+                    : isDraw
+                      ? "border-secondary bg-secondary text-foreground"
+                      : "border-secondary bg-secondary text-secondary-foreground";
+
+                const matchBadgeClass = scoreBadgeClass;
+
+                return (
+                  <div
+                    key={match.id}
+                    className="group flex items-center gap-3 py-2.5 first:pt-3 animate-fade-in"
+                    style={{ animationDelay: `${idx * 30}ms` }}
+                  >
+                    <div className="hidden w-32 shrink-0 sm:block">
+                      <p className="text-[0.65rem] leading-tight text-muted-foreground">
+                        <Calendar className="mb-0.5 mr-0.5 inline size-3" />
+                        {formatDate(match.scheduled_at)}
+                      </p>
+                    </div>
+
+                    <div className="flex flex-1 items-center gap-2 overflow-hidden">
+                      <p
+                        className={`truncate text-right text-xs font-semibold flex-1 ${
+                          hasScore && isT1Winner
+                            ? "text-foreground"
+                            : hasScore
+                            ? "text-muted-foreground"
+                            : "text-foreground"
+                        }`}
+                      >
+                        {match.team1?.name}
+                      </p>
+
+                      <div className="flex shrink-0 items-center gap-1">
+                        {hasScore ? (
+                          <>
+                            <Badge
+                              variant="outline"
+                              className={`font-mono tabular-nums ${scoreBadgeClass}`}
+                            >
+                              {match.set1_team1} – {match.set1_team2}
+                            </Badge>
+
+                            {match.set2_team1 !== null && (
+                              <Badge
+                                variant="outline"
+                                className={`font-mono tabular-nums ${scoreBadgeClass}`}
+                              >
+                                {match.set2_team1} – {match.set2_team2}
+                              </Badge>
+                            )}
+                          </>
+                        ) : (
+                          <span className="px-2 text-[0.65rem] text-muted-foreground">VS</span>
+                        )}
+                      </div>
+
+                      <p
+                        className={`truncate text-left text-xs font-semibold flex-1 ${
+                          hasScore && isT2Winner ? "text-foreground" : hasScore ? "text-muted-foreground" : "text-foreground"
+                        }`}
+                      >
+                        {match.team2?.name}
+                      </p>
+                    </div>
+
+                    <Badge
+                      variant="outline"
+                      className={`hidden shrink-0 sm:inline-flex ${matchBadgeClass}`}
+                    >
+                      {hasScore ? (isDraw ? "Seri" : isT1Winner ? "Tim 1 menang" : "Tim 2 menang") : "Dijadwalkan"}
+                    </Badge>
+
+                    <div className="flex shrink-0 items-center gap-1 opacity-0 transition-opacity group-hover:opacity-100">
+                      <Button
+                        variant="ghost"
+                        size="icon-sm"
+                        onClick={() => onEdit(match)}
+                        title="Edit skor"
+                      >
+                        <Edit2 />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="icon-sm"
+                        onClick={() => void onDelete(match.id)}
+                        title="Hapus"
+                        className="text-destructive hover:text-destructive"
+                      >
+                        <Trash2 />
+                      </Button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </AccordionContent>
+        </AccordionItem>
+      ))}
+    </Accordion>
+  );
+}
+
 // ─── Main component ────────────────────────────────────────────────────────────
 
 export default function Matches() {
@@ -188,6 +351,7 @@ export default function Matches() {
   const [team1Id, setTeam1Id] = useState("");
   const [team2Id, setTeam2Id] = useState("");
   const [scheduledAt, setScheduledAt] = useState("");
+  const [weekNumber, setWeekNumber] = useState("");
   const [set1T1, setSet1T1] = useState("");
   const [set1T2, setSet1T2] = useState("");
   const [set2T1, setSet2T1] = useState("");
@@ -195,6 +359,7 @@ export default function Matches() {
 
   // edit-score modal
   const [editMatch, setEditMatch] = useState<Match | null>(null);
+  const [editWeekNumber, setEditWeekNumber] = useState("");
   const [editSet1T1, setEditSet1T1] = useState("");
   const [editSet1T2, setEditSet1T2] = useState("");
   const [editSet2T1, setEditSet2T1] = useState("");
@@ -212,7 +377,7 @@ export default function Matches() {
     const { data, error } = await supabase
       .from("matches")
       .select(
-        `id, team1_id, team2_id, scheduled_at,
+        `id, team1_id, team2_id, scheduled_at, week_number,
          set1_team1, set1_team2, set2_team1, set2_team2,
          team1:teams!matches_team1_id_fkey(id, name),
          team2:teams!matches_team2_id_fkey(id, name)`
@@ -227,6 +392,7 @@ export default function Matches() {
         team1_id: match.team1_id,
         team2_id: match.team2_id,
         scheduled_at: match.scheduled_at,
+        week_number: match.week_number,
         set1_team1: match.set1_team1,
         set1_team2: match.set1_team2,
         set2_team1: match.set2_team1,
@@ -259,14 +425,14 @@ export default function Matches() {
   }
 
   function resetAddForm() {
-    setTeam1Id(""); setTeam2Id(""); setScheduledAt("");
+    setTeam1Id(""); setTeam2Id(""); setScheduledAt(""); setWeekNumber("");
     setSet1T1(""); setSet1T2(""); setSet2T1(""); setSet2T2("");
   }
 
   async function handleAddMatch(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    if (!team1Id || !team2Id || !scheduledAt) {
+    if (!team1Id || !team2Id || !scheduledAt || !weekNumber) {
       toast.error("Semua field harus diisi"); return;
     }
     if (team1Id === team2Id) {
@@ -284,6 +450,7 @@ export default function Matches() {
       team1_id: team1Id,
       team2_id: team2Id,
       scheduled_at: utcTime,
+      week_number: +weekNumber,
       set1_team1: set1T1 ? +set1T1 : null,
       set1_team2: set1T2 ? +set1T2 : null,
       set2_team1: set2T1 ? +set2T1 : null,
@@ -303,6 +470,7 @@ export default function Matches() {
 
   function openEdit(match: Match) {
     setEditMatch(match);
+    setEditWeekNumber(match.week_number?.toString() ?? "");
     setEditSet1T1(match.set1_team1?.toString() ?? "");
     setEditSet1T2(match.set1_team2?.toString() ?? "");
     setEditSet2T1(match.set2_team1?.toString() ?? "");
@@ -312,6 +480,7 @@ export default function Matches() {
   async function handleSaveEdit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!editMatch) return;
+    if (!editWeekNumber) { toast.error("Week harus diisi"); return; }
     const scoreErr = validateScores(editSet1T1, editSet1T2, editSet2T1, editSet2T2);
     if (scoreErr) { toast.error(scoreErr); return; }
 
@@ -319,6 +488,7 @@ export default function Matches() {
     const { error } = await supabase
       .from("matches")
       .update({
+        week_number: +editWeekNumber,
         set1_team1: editSet1T1 ? +editSet1T1 : null,
         set1_team2: editSet1T2 ? +editSet1T2 : null,
         set2_team1: editSet2T1 ? +editSet2T1 : null,
@@ -394,130 +564,7 @@ export default function Matches() {
               Belum ada pertandingan. Klik "Jadwalkan" untuk menambahkan.
             </p>
           ) : (
-            <div className="divide-y divide-border">
-              {matches.map((match, idx) => {
-                const hasScore =
-                  match.set1_team1 !== null && match.set1_team2 !== null;
-                const t1Wins =
-                  hasScore
-                    ? (match.set1_team1! > match.set1_team2! ? 1 : 0) +
-                      (match.set2_team1! > match.set2_team2! ? 1 : 0)
-                    : 0;
-                const t2Wins =
-                  hasScore
-                    ? (match.set1_team2! > match.set1_team1! ? 1 : 0) +
-                      (match.set2_team2! > match.set2_team1! ? 1 : 0)
-                    : 0;
-
-                const isDraw = hasScore && t1Wins === 1 && t2Wins === 1;
-                const isT1Winner = hasScore && t1Wins === 2;
-                const isT2Winner = hasScore && t2Wins === 2;
-
-                const scoreBadgeClass =
-                  isT1Winner || isT2Winner
-                    ? "border-primary bg-primary text-white"
-                    : isDraw
-                      ? "border-secondary bg-secondary text-foreground"
-                      : "border-secondary bg-secondary text-secondary-foreground";
-
-                const matchBadgeClass = scoreBadgeClass;
-
-                return (
-                  <div
-                    key={match.id}
-                    className="group flex items-center gap-3 py-3 first:pt-0 last:pb-0 animate-fade-in"
-                    style={{ animationDelay: `${idx * 40}ms` }}
-                  >
-                    {/* date pill */}
-                    <div className="hidden w-32 shrink-0 sm:block">
-                      <p className="text-[0.65rem] leading-tight text-muted-foreground">
-                        <Calendar className="mb-0.5 mr-0.5 inline size-3" />
-                        {formatDate(match.scheduled_at)}
-                      </p>
-                    </div>
-
-                    {/* teams + score */}
-                    <div className="flex flex-1 items-center gap-2 overflow-hidden">
-                      {/* team 1 */}
-                      <p
-                        className={`truncate text-right text-xs font-semibold flex-1 ${
-                          hasScore && isT1Winner
-                            ? "text-foreground"
-                            : hasScore
-                            ? "text-muted-foreground"
-                            : "text-foreground"
-                        }`}
-                      >
-                        {match.team1?.name}
-                      </p>
-
-                      {/* scoreboard */}
-                      <div className="flex shrink-0 items-center gap-1">
-                        {hasScore ? (
-                          <>
-                            <Badge
-                              variant="outline"
-                              className={`font-mono tabular-nums ${scoreBadgeClass}`}
-                            >
-                              {match.set1_team1} – {match.set1_team2}
-                            </Badge>
-
-                            {match.set2_team1 !== null && (
-                              <Badge
-                                variant="outline"
-                                className={`font-mono tabular-nums ${scoreBadgeClass}`}
-                              >
-                                {match.set2_team1} – {match.set2_team2}
-                              </Badge>
-                            )}
-                          </>
-                        ) : (
-                          <span className="px-2 text-[0.65rem] text-muted-foreground">VS</span>
-                        )}
-                      </div>
-
-                      {/* team 2 */}
-                      <p
-                        className={`truncate text-left text-xs font-semibold flex-1 ${
-                          hasScore && isT2Winner ? "text-foreground" : hasScore ? "text-muted-foreground" : "text-foreground"
-                        }`}
-                      >
-                        {match.team2?.name}
-                      </p>
-                    </div>
-
-                    {/* status badge */}
-                    <Badge
-                      variant="outline"
-                      className={`hidden shrink-0 sm:inline-flex ${matchBadgeClass}`}
-                    >
-                      {hasScore ? (isDraw ? "Seri" : isT1Winner ? "Tim 1 menang" : "Tim 2 menang") : "Dijadwalkan"}
-                    </Badge>
-
-                    {/* actions */}
-                    <div className="flex shrink-0 items-center gap-1 opacity-0 transition-opacity group-hover:opacity-100">
-                      <Button
-                        variant="ghost"
-                        size="icon-sm"
-                        onClick={() => openEdit(match)}
-                        title="Edit skor"
-                      >
-                        <Edit2 />
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="icon-sm"
-                        onClick={() => void handleDelete(match.id)}
-                        title="Hapus"
-                        className="text-destructive hover:text-destructive"
-                      >
-                        <Trash2 />
-                      </Button>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+            <MatchesByWeek matches={matches} onEdit={openEdit} onDelete={handleDelete} />
           )}
         </CardContent>
       </Card>
@@ -584,6 +631,20 @@ export default function Matches() {
                 />
               </div>
 
+              {/* Week Number */}
+              <div className="space-y-1.5">
+                <label className="text-xs font-medium">Minggu (Week)</label>
+                <Input
+                  type="number"
+                  min="1"
+                  max="26"
+                  value={weekNumber}
+                  onChange={(e) => setWeekNumber(e.target.value)}
+                  placeholder="Contoh: 1, 2, 3..."
+                  required
+                />
+              </div>
+
               {/* Skor opsional */}
               <div className="space-y-3 rounded-md border border-border p-3">
                 <p className="text-xs font-medium text-muted-foreground">
@@ -638,6 +699,19 @@ export default function Matches() {
               )}
               <ScoreInput label="Set 1" t1={editSet1T1} t2={editSet1T2} onT1={setEditSet1T1} onT2={setEditSet1T2} />
               <ScoreInput label="Set 2" t1={editSet2T1} t2={editSet2T2} onT1={setEditSet2T1} onT2={setEditSet2T2} />
+              
+              <div className="space-y-1.5 pt-2">
+                <label className="text-xs font-medium">Minggu (Week)</label>
+                <Input
+                  type="number"
+                  min="1"
+                  max="26"
+                  value={editWeekNumber}
+                  onChange={(e) => setEditWeekNumber(e.target.value)}
+                  placeholder="Contoh: 1, 2, 3..."
+                  required
+                />
+              </div>
             </div>
 
             <DialogFooter className="mt-6" showCloseButton>
