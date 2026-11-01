@@ -162,6 +162,17 @@
     animation: accordion-up 0.2s ease-out;
   }
 
+  .gradient-circle {
+    background: radial-gradient(
+        circle,
+        rgba(156, 39, 176, 0.3) 0%,
+        transparent 75%
+        );
+    filter: blur(30px);
+    -webkit-filter: blur(30px);
+  }
+
+
   @keyframes accordion-down {
     from {
       opacity: 0;

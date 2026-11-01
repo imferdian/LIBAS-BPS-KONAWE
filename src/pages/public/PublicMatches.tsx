@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 // import { Badge } from "../../components/ui/badge";
 import { ChevronLeft, ChevronRight, Clock, Trophy, CheckCircle2, Scale, Building2, Users } from "lucide-react";
+import { cn } from "cn";
 
 type Match = {
   id: string;
@@ -170,10 +171,6 @@ export function PublicMatches({ matches, formatDate }: PublicMatchesProps) {
           <div className="flex flex-col items-center justify-center text-center px-2">
             <div className="flex items-center gap-2 text-xs">
               <span className="px-2.5 py-0.5 rounded-full bg-emerald-500 text-white font-bold text-[11px] tracking-wide uppercase">
-                BABAK REGULAR
-              </span>
-              <span className="text-muted-foreground">•</span>
-              <span className="font-semibold text-blue-400">
                 Minggu {activeWeek}
               </span>
             </div>
@@ -181,7 +178,7 @@ export function PublicMatches({ matches, formatDate }: PublicMatchesProps) {
               {activeWeekDate}
             </h2>
             <p className="text-[11px] text-muted-foreground mt-0.5">
-              Total {stats.total} Pertandingan Selesai Dimainkan • Update Terakhir: 10:30 WIB
+              Total {stats.total} Pertandingan Selesai Dimainkan • Update Terakhir: 10:30 WITA
             </p>
           </div>
 
@@ -252,16 +249,12 @@ export function PublicMatches({ matches, formatDate }: PublicMatchesProps) {
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center gap-4">
                     <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-blue-500/10 text-blue-400">
-                      <Clock className="h-3.5 w-3.5" />
+                      <Clock className="h-3.5 w-3.5"/>
                       <span className="text-xs font-bold">{formatDate(m.scheduled_at)}</span>
                     </div>
-                    {/* <div className="flex items-center gap-1.5 text-muted-foreground/60">
-                      <Building2 className="h-3.5 w-3.5" />
-                      <span className="text-xs">Lap. GOR Abunawas Konawe</span>
-                    </div> */}
                   </div>
                   <div className="px-2.5 py-1 rounded-md bg-muted/50 border border-border/50">
-                    <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">
+                    <span className={cn("text-[10px] font-bold text-muted-foreground uppercase tracking-wider", isDone ? "text-green-500 border-green-500" : "text-muted-foreground")}>
                       {isDone ? "Selesai" : "Mendatang"}
                     </span>
                   </div>
@@ -281,7 +274,7 @@ export function PublicMatches({ matches, formatDate }: PublicMatchesProps) {
                           {isT1Winner && <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0" />}
                         </div>
                         <p className={`text-[11px] truncate ${isT1Winner ? "text-emerald-500 font-medium" : "text-muted-foreground"}`}>
-                          {isT1Winner ? "Pemenang Pertandingan" : `${m.team1.player1} & ${m.team1.player2}`}
+                          <span className="text-muted-foreground">{`${m.team1.player1} & ${m.team1.player2}`}</span> {isT1Winner && "| Winner"}
                         </p>
                       </div>
                     </div>
@@ -309,7 +302,7 @@ export function PublicMatches({ matches, formatDate }: PublicMatchesProps) {
                           {isT2Winner && <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0" />}
                         </div>
                         <p className={`text-[11px] truncate ${isT2Winner ? "text-emerald-500 font-medium" : "text-muted-foreground"}`}>
-                          {isT2Winner ? "Pemenang Pertandingan" : `${m.team2.player1} & ${m.team2.player2}`}
+                          <span className="text-muted-foreground">{`${m.team2.player1} & ${m.team2.player2}`}</span> {isT2Winner && "| Winner"}                          
                         </p>
                       </div>
                     </div>

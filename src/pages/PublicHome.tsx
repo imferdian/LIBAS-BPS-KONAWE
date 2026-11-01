@@ -288,8 +288,8 @@ export default function PublicHome() {
               <span className="font-heading font-bold text-base tracking-tight truncate">
                 LIBAS
               </span>
-              <span className="text-[10px] text-muted-foreground uppercase tracking-widest font-semibold">
-                Liga Badminton Statistik
+              <span className="text-[9px] text-muted-foreground uppercase tracking-widest font-semibold">
+                Liga Badminton Statistik BPS Konawe
               </span>
             </div>
           )}
@@ -372,7 +372,7 @@ export default function PublicHome() {
               Halo, Penggemar Badminton! 👋
             </h2>
             <p className="text-xs text-muted-foreground hidden sm:block">
-              Pantau klasemen terbaru, jadwal laga, dan skor langsung liga LIBAS.
+              Pantau klasemen terbaru, jadwal laga, dan skor langsung Liga Badminton Statistik (LIBAS) BPS Kabupaten Konawe.
             </p>
           </div>
 
@@ -391,7 +391,8 @@ export default function PublicHome() {
         </header>
 
         {/* Scrollable View Area */}
-        <main className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6 pb-24 lg:pb-6 w-full">
+        <main className="flex-1 relative overflow-y-auto p-4 md:p-6 space-y-6 pb-24 lg:pb-6 w-full">
+          <div className=" fixed rounded-full h-175 w-175 -top-110 left-1/2 -translate-x-1/2 opacity-10 blur-[70px] bg-emerald-500 " />
           {loading ? (
             <div className="flex items-center justify-center py-24 text-muted-foreground text-sm">
               Memuat data liga...
