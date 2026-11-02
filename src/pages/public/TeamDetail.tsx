@@ -355,20 +355,20 @@ export function TeamDetail({ teamId, teams, matches, source, onBack }: TeamDetai
   return (
     <div className="flex-1 flex flex-col bg-background font-sans overflow-hidden">
       {/* Header - Back + Breadcrumb */}
-      <header className=" px-4 md:px-6 py-3 shrink-0">
-        <div className="flex items-center gap-2 text-sm">
+      <header className="border-b border-border bg-card/50 backdrop-blur-sm px-4 md:px-6 py-3 shrink-0 relative z-10">
+        <div className="flex items-center gap-2 text-sm overflow-x-auto">
           <button
             onClick={onBack}
-            className="p-1.5 hover:bg-secondary rounded-lg transition-colors shrink-0"
+            className="p-1.5 hover:bg-secondary rounded-lg transition-colors shrink-0 relative z-20"
           >
             <ChevronLeft className="size-4" />
           </button>
-          <ChevronRight className="size-4 text-muted-foreground" />
-          <span className="text-muted-foreground">
+          <ChevronRight className="size-4 text-muted-foreground shrink-0" />
+          <span className="text-muted-foreground shrink-0">
             {source === "standings" ? "Klasemen" : source === "matches" ? "Pertandingan" : "Teams"}
           </span>
-          <ChevronRight className="size-4 text-muted-foreground" />
-          <span className="font-semibold text-foreground">{team.name}</span>
+          <ChevronRight className="size-4 text-muted-foreground shrink-0" />
+          <span className="font-semibold text-foreground truncate">{team.name}</span>
         </div>
       </header>
 
@@ -446,25 +446,27 @@ export function TeamDetail({ teamId, teams, matches, source, onBack }: TeamDetai
 
 
         {/* Tabs */}
-        <div className="flex gap-2 border-b border-border">
-          {[
-            { key: "all" as const, label: "Semua Pertandingan", count: upcoming.length + history.length },
-            { key: "upcoming" as const, label: "Jadwal Mendatang", count: upcoming.length },
-            { key: "history" as const, label: "Riwayat", count: history.length },
-          ].map((tab) => (
-            <button
-              key={tab.key}
-              onClick={() => setActiveTab(tab.key)}
-              className={`px-4 py-3 text-sm font-medium border-b-2 transition-colors ${
-                activeTab === tab.key
-                  ? "border-primary text-foreground"
-                  : "border-transparent text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {tab.label}
-              {tab.count !== undefined && <span className="ml-2 text-xs bg-muted px-2 py-1 rounded-full">{tab.count}</span>}
-            </button>
-          ))}
+        <div className="overflow-x-auto -mx-4 md:mx-0">
+          <div className="flex gap-2 border-b border-border px-4 md:px-0 min-w-max">
+            {[
+              { key: "all" as const, label: "Semua Pertandingan", count: upcoming.length + history.length },
+              { key: "upcoming" as const, label: "Jadwal Mendatang", count: upcoming.length },
+              { key: "history" as const, label: "Riwayat", count: history.length },
+            ].map((tab) => (
+              <button
+                key={tab.key}
+                onClick={() => setActiveTab(tab.key)}
+                className={`px-4 py-3 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
+                  activeTab === tab.key
+                    ? "border-primary text-foreground"
+                    : "border-transparent text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {tab.label}
+                {tab.count !== undefined && <span className="ml-2 text-xs bg-muted px-2 py-1 rounded-full">{tab.count}</span>}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Tab Content */}
