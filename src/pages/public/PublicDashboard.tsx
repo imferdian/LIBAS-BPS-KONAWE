@@ -187,7 +187,7 @@ export function PublicDashboard({
                     </p>
                   </div>
                 </div>
-                <Badge variant="secondary" className="font-mono text-xs font-bold shrink-0 ml-2">
+                <Badge variant="secondary" className=" text-xs font-bold shrink-0 ml-2">
                   {s.points} Pts
                 </Badge>
               </div>
@@ -228,10 +228,10 @@ export function PublicDashboard({
                     <span className="font-medium text-muted-foreground text-[11px]">{idx + 1}</span>
                     <span className="font-semibold truncate pr-2">{s.team_name}</span>
                     <span className="text-center text-muted-foreground">{s.played}</span>
-                    <span className="text-center font-mono">{s.points_for}</span>
-                    <span className="text-center font-mono text-muted-foreground">{s.points_against}</span>
+                    <span className="text-center ">{s.points_for}</span>
+                    <span className="text-center  text-muted-foreground">{s.points_against}</span>
                     <span className="text-center">
-                      <span className={`font-mono font-bold ${s.points_for - s.points_against > 0 ? "text-green-600 dark:text-green-400" : s.points_for - s.points_against < 0 ? "text-red-600 dark:text-red-400" : "text-muted-foreground"}`}>
+                      <span className={` font-bold ${s.points_for - s.points_against > 0 ? "text-green-600 dark:text-green-400" : s.points_for - s.points_against < 0 ? "text-red-600 dark:text-red-400" : "text-muted-foreground"}`}>
                         {s.points_for - s.points_against > 0 ? "+" : ""}{s.points_for - s.points_against}
                       </span>
                     </span>
@@ -258,7 +258,6 @@ export function PublicDashboard({
               <div key={m.id} className="p-2.5 rounded-lg border border-border/60 bg-secondary/10 hover:border-primary/30 transition-all">
                 <div className="flex items-center justify-between text-[11px] text-muted-foreground mb-1.5">
                   <span>{formatDate(m.scheduled_at)}</span>
-                  <span className="text-primary font-medium">Lapangan 1</span>
                 </div>
                 <div className="flex items-center justify-between text-xs font-semibold">
                   <span className="truncate max-w-[42%]">{m.team1.name}</span>

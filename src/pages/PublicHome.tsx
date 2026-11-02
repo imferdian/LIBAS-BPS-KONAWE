@@ -20,6 +20,7 @@ import { PublicDashboard } from "./public/PublicDashboard";
 import { PublicStandings } from "./public/PublicStandings";
 import { PublicMatches } from "./public/PublicMatches";
 import { PublicTeams } from "./public/PublicTeams";
+import { TeamDetail } from "./public/TeamDetail";
 
 const supabase = createClient();
 
@@ -88,8 +89,11 @@ function formatTimeOnly(dateString: string) {
 }
 
 export default function PublicHome() {
+  // const navigate = useNavigate();
   const [minimized, setMinimized] = useState(false);
-  const [activeTab, setActiveTab] = useState<"dashboard" | "matches" | "standings" | "teams">("dashboard");
+  const [activeTab, setActiveTab] = useState<"dashboard" | "matches" | "standings" | "teams" | "team-detail">("dashboard");
+  const [selectedTeamId, setSelectedTeamId] = useState<string | null>(null);
+  const [previousTab, setPreviousTab] = useState<"standings" | "matches" | "teams">("standings");
   const [searchQuery, setSearchQuery] = useState("");
 
   const [teams, setTeams] = useState<Team[]>([]);
@@ -391,7 +395,7 @@ export default function PublicHome() {
         </header>
 
         {/* Scrollable View Area */}
-        <main className="flex-1 relative overflow-y-auto p-4 md:p-6 space-y-6 pb-24 lg:pb-6 w-full">
+        <main className="flex-1 relative overflow-y-auto p-4 md:p-6 space-y-6 pb-24 lg:pb-6 w-full no-scrollbar">
           <div className=" fixed rounded-full h-175 w-175 -top-110 left-1/2 -translate-x-1/2 opacity-10 blur-[70px] bg-emerald-500 " />
           {loading ? (
             <div className="flex items-center justify-center py-24 text-muted-foreground text-sm">
@@ -412,14 +416,16 @@ export default function PublicHome() {
               onViewTeams={() => setActiveTab("teams")}
             />
           ) : activeTab === "standings" ? (
-            <PublicStandings standings={standings} />
+            <PublicStandings standings={standings} onTeamClick={(id) => { setSelectedTeamId(id); setPreviousTab("standings"); setActiveTab("team-detail"); }} />
           ) : activeTab === "matches" ? (
-            <PublicMatches matches={matches} formatDate={formatDate} />
-          ) : (
-            <PublicTeams teams={teams} />
-          )}
-        </main>
-      </div>
+            <PublicMatches matches={matches} formatDate={formatDate} onTeamClick={(id) => { setSelectedTeamId(id); setPreviousTab("matches"); setActiveTab("team-detail"); }} />
+          ) : activeTab === "teams" ? (
+            <PublicTeams teams={teams} onTeamClick={(id) => { setSelectedTeamId(id); setPreviousTab("teams"); setActiveTab("team-detail"); }} />
+          ) : activeTab === "team-detail" ? (
+            <TeamDetail teamId={selectedTeamId} teams={teams} matches={matches} source={previousTab} onBack={() => setActiveTab(previousTab)} />
+          ) : null }
+          </main>
+        </div>
 
       {/* Bottom Navigation - Mobile Only */}
       <nav className="fixed bottom-0 left-0 right-0 z-40 flex h-16 items-center justify-around border-t border-border bg-card/95 backdrop-blur-sm lg:hidden">

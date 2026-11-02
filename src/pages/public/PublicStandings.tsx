@@ -19,9 +19,10 @@ type Standing = {
 
 interface PublicStandingsProps {
   standings: Standing[];
+  onTeamClick: (teamId: string) => void;
 }
 
-export function PublicStandings({ standings }: PublicStandingsProps) {
+export function PublicStandings({ standings, onTeamClick }: PublicStandingsProps) {
   return (
     <div className="space-y-4">
       <header className="relative overflow-hidden rounded-xl border border-border bg-card px-5 py-5 "> 
@@ -82,7 +83,11 @@ export function PublicStandings({ standings }: PublicStandingsProps) {
               </thead>
               <tbody className="divide-y divide-border/50">
                 {standings.map((s, idx) => (
-                  <tr key={s.team_id} className="hover:bg-secondary/30 transition-colors">
+                  <tr 
+                    key={s.team_id} 
+                    onClick={() => onTeamClick(s.team_id)} 
+                    className="hover:bg-secondary/30 transition-colors cursor-pointer"
+                  >
                     <td className="py-3 px-3 font-bold text-foreground sticky left-0 bg-card/50 z-10">
                       {idx === 0 ? <Medal className="size-3.5 text-yellow-500" /> : idx === 1 ? <Medal className="size-3.5 text-gray-400" /> : idx === 2 ? <Medal className="size-3.5 text-amber-600" /> : idx + 1}
                     </td>

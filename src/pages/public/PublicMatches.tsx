@@ -20,6 +20,7 @@ type Match = {
 interface PublicMatchesProps {
   matches: Match[];
   formatDate: (dateString: string) => string;
+  onTeamClick: (teamId: string) => void;
 }
 
 function formatMatchDateOnly(dateString?: string) {
@@ -35,7 +36,7 @@ function formatMatchDateOnly(dateString?: string) {
   }).format(date);
 }
 
-export function PublicMatches({ matches, formatDate }: PublicMatchesProps) {
+export function PublicMatches({ matches, formatDate, onTeamClick }: PublicMatchesProps) {
   const [currentWeek, setCurrentWeek] = useState<number | null>(null);
 
   const weeks = useMemo(() => {
@@ -196,28 +197,6 @@ export function PublicMatches({ matches, formatDate }: PublicMatchesProps) {
         </div>
       </div>
 
-      {/* Filter Tabs Row */}
-      {/* <div className="flex flex-wrap gap-2 items-center justify-between px-4 lg:px-0">
-        <div className="flex flex-wrap gap-2">
-          <Badge variant="default" className="bg-emerald-600 text-white cursor-pointer hover:bg-emerald-700">
-            Semua {stats.total}
-          </Badge>
-          <Badge variant="outline" className="cursor-pointer hover:bg-muted">
-            Selesai {stats.completed}
-          </Badge>
-          <Badge variant="outline" className="cursor-pointer hover:bg-muted">
-            Akan Datang {stats.upcoming}
-          </Badge>
-        </div>
-
-        <div className="flex items-center gap-2 rounded-lg border border-border bg-muted/30 px-3 py-1.5">
-          <Building2 className="h-4 w-4 text-muted-foreground" />
-          <select className="bg-transparent text-xs font-medium text-foreground outline-none">
-            <option>Lap. GOR Abunawas Konawe</option>
-          </select>
-        </div>
-      </div> */}
-
       {/* Matches Grid */}
       {weekMatches.length === 0 ? (
         <p className="text-center text-xs text-muted-foreground py-12">
@@ -264,7 +243,7 @@ export function PublicMatches({ matches, formatDate }: PublicMatchesProps) {
                 <div className="space-y-1">
                   {/* Team 1 Row */}
                   <div className={`flex items-center justify-between p-2 rounded-lg transition-colors ${isT1Winner ? "bg-emerald-500/5" : ""}`}>
-                    <div className="flex items-center gap-3 flex-1 min-w-0">
+                    <div className="flex items-center gap-3 flex-1 min-w-0 cursor-pointer hover:opacity-75" onClick={() => onTeamClick(m.team1_id)}>
                       <div className={`flex h-10 w-10 items-center justify-center rounded-lg font-heading text-sm font-bold shrink-0 ${isT1Winner ? "bg-emerald-600 text-white" : "bg-muted text-muted-foreground"}`}>
                         {m.team1.name.slice(0, 2).toUpperCase()}
                       </div>
@@ -292,7 +271,7 @@ export function PublicMatches({ matches, formatDate }: PublicMatchesProps) {
 
                   {/* Team 2 Row */}
                   <div className={`flex items-center justify-between p-2 rounded-lg transition-colors ${isT2Winner ? "bg-emerald-500/5" : ""}`}>
-                    <div className="flex items-center gap-3 flex-1 min-w-0">
+                    <div className="flex items-center gap-3 flex-1 min-w-0 cursor-pointer hover:opacity-75" onClick={() => onTeamClick(m.team2_id)}>
                       <div className={`flex h-10 w-10 items-center justify-center rounded-lg font-heading text-sm font-bold shrink-0 ${isT2Winner ? "bg-emerald-600 text-white" : "bg-muted text-muted-foreground"}`}>
                         {m.team2.name.slice(0, 2).toUpperCase()}
                       </div>
@@ -302,7 +281,7 @@ export function PublicMatches({ matches, formatDate }: PublicMatchesProps) {
                           {isT2Winner && <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0" />}
                         </div>
                         <p className={`text-[11px] truncate ${isT2Winner ? "text-emerald-500 font-medium" : "text-muted-foreground"}`}>
-                          <span className="text-muted-foreground">{`${m.team2.player1} & ${m.team2.player2}`}</span> {isT2Winner && "| Winner"}                          
+                          <span className="text-muted-foreground">{`${m.team2.player1} & ${m.team2.player2}`}</span> {isT2Winner && "| Winner"}
                         </p>
                       </div>
                     </div>
