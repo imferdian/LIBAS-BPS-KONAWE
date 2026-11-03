@@ -150,7 +150,7 @@ export function TeamDetail({ teamId, teams, matches, source, onBack }: TeamDetai
     const ourTeam = isTeam1 ? m.team1 : m.team2;
 
     return (
-      <div key={m.id} className="border-l-4 border-l-blue-500 bg-card/50 rounded-lg p-4 space-y-3">
+      <div key={m.id} className="border-l-4 border border-border border-l-blue-500 bg-card/50 rounded-lg px-4 pb-5 pt-4 space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Badge variant="outline" className="bg-blue-500/10 text-blue-400 border-blue-500/30 uppercase text-xs font-bold tracking-wide">
@@ -477,7 +477,9 @@ export function TeamDetail({ teamId, teams, matches, source, onBack }: TeamDetai
               {upcoming.length > 0 && (
                 <div className="space-y-3">
                   <h3 className="text-sm font-bold uppercase tracking-wide text-muted-foreground">Upcoming Fixtures</h3>
-                  {upcoming.map((m) => renderUpcomingMatch(m))}
+                  <div className="space-y-2 grid sm:grid-cols-2 gap-2">
+                    {upcoming.map((m) => renderUpcomingMatch(m))}
+                  </div>
                 </div>
               )}
 

@@ -395,36 +395,38 @@ export default function PublicHome() {
         </header>
 
         {/* Scrollable View Area */}
-        <main className="flex-1 relative overflow-y-auto p-4 md:p-6 space-y-6 pb-24 lg:pb-6 w-full no-scrollbar">
-          <div className=" fixed rounded-full h-175 w-175 -top-110 left-1/2 -translate-x-1/2 opacity-10 blur-[70px] bg-emerald-500 " />
-          {loading ? (
-            <div className="flex items-center justify-center py-24 text-muted-foreground text-sm">
-              Memuat data liga...
-            </div>
-          ) : activeTab === "dashboard" ? (
-            <PublicDashboard
-              teams={teams}
-              matches={matches}
-              standings={standings}
-              upcomingMatches={upcomingMatches}
-              recentMatches={recentMatches}
-              totalPointsScored={totalPointsScored}
-              formatDate={formatDate}
-              formatTimeOnly={formatTimeOnly}
-              onViewMatches={() => setActiveTab("matches")}
-              onViewStandings={() => setActiveTab("standings")}
-              onViewTeams={() => setActiveTab("teams")}
-            />
-          ) : activeTab === "standings" ? (
-            <PublicStandings standings={standings} onTeamClick={(id) => { setSelectedTeamId(id); setPreviousTab("standings"); setActiveTab("team-detail"); }} />
-          ) : activeTab === "matches" ? (
-            <PublicMatches matches={matches} formatDate={formatDate} onTeamClick={(id) => { setSelectedTeamId(id); setPreviousTab("matches"); setActiveTab("team-detail"); }} />
-          ) : activeTab === "teams" ? (
-            <PublicTeams teams={teams} onTeamClick={(id) => { setSelectedTeamId(id); setPreviousTab("teams"); setActiveTab("team-detail"); }} />
-          ) : activeTab === "team-detail" ? (
-            <TeamDetail teamId={selectedTeamId} teams={teams} matches={matches} source={previousTab} onBack={() => setActiveTab(previousTab)} />
-          ) : null }
-          </main>
+        <main className="relative isolate flex-1 overflow-y-auto p-4 md:p-6 space-y-6 pb-24 lg:pb-6 w-full no-scrollbar">
+          <div className="pointer-events-none fixed left-1/2 -top-110 z-0 h-175 w-175 -translate-x-1/2 rounded-full bg-emerald-500/10 blur-[70px]" />
+          <div className="relative z-10">
+            {loading ? (
+              <div className="flex items-center justify-center py-24 text-muted-foreground text-sm">
+                Memuat data liga...
+              </div>
+            ) : activeTab === "dashboard" ? (
+              <PublicDashboard
+                teams={teams}
+                matches={matches}
+                standings={standings}
+                upcomingMatches={upcomingMatches}
+                recentMatches={recentMatches}
+                totalPointsScored={totalPointsScored}
+                formatDate={formatDate}
+                formatTimeOnly={formatTimeOnly}
+                onViewMatches={() => setActiveTab("matches")}
+                onViewStandings={() => setActiveTab("standings")}
+                onViewTeams={() => setActiveTab("teams")}
+              />
+            ) : activeTab === "standings" ? (
+              <PublicStandings standings={standings} onTeamClick={(id) => { setSelectedTeamId(id); setPreviousTab("standings"); setActiveTab("team-detail"); }} />
+            ) : activeTab === "matches" ? (
+              <PublicMatches matches={matches} formatDate={formatDate} onTeamClick={(id) => { setSelectedTeamId(id); setPreviousTab("matches"); setActiveTab("team-detail"); }} />
+            ) : activeTab === "teams" ? (
+              <PublicTeams teams={teams} onTeamClick={(id) => { setSelectedTeamId(id); setPreviousTab("teams"); setActiveTab("team-detail"); }} />
+            ) : activeTab === "team-detail" ? (
+              <TeamDetail teamId={selectedTeamId} teams={teams} matches={matches} source={previousTab} onBack={() => setActiveTab(previousTab)} />
+            ) : null }
+          </div>
+        </main>
         </div>
 
       {/* Bottom Navigation - Mobile Only */}
