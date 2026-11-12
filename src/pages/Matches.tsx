@@ -364,6 +364,7 @@ export default function Matches() {
   const [editSet1T2, setEditSet1T2] = useState("");
   const [editSet2T1, setEditSet2T1] = useState("");
   const [editSet2T2, setEditSet2T2] = useState("");
+  const [editScheduledAt, setEditScheduledAt] = useState("");
 
   const supabase = createClient();
 
@@ -475,6 +476,8 @@ export default function Matches() {
     setEditSet1T2(match.set1_team2?.toString() ?? "");
     setEditSet2T1(match.set2_team1?.toString() ?? "");
     setEditSet2T2(match.set2_team2?.toString() ?? "");
+    const date = new Date(match.scheduled_at);
+    setEditScheduledAt(date.toISOString().slice(0, 16));
   }
 
   async function handleSaveEdit(e: React.FormEvent<HTMLFormElement>) {
@@ -488,6 +491,7 @@ export default function Matches() {
     const { error } = await supabase
       .from("matches")
       .update({
+        scheduled_at: new Date(editScheduledAt).toISOString(),
         week_number: +editWeekNumber,
         set1_team1: editSet1T1 ? +editSet1T1 : null,
         set1_team2: editSet1T2 ? +editSet1T2 : null,
@@ -701,6 +705,16 @@ export default function Matches() {
               <ScoreInput label="Set 2" t1={editSet2T1} t2={editSet2T2} onT1={setEditSet2T1} onT2={setEditSet2T2} />
               
               <div className="space-y-1.5 pt-2">
+                <label className="text-xs font-medium">Tanggal & Waktu (Reschedule)</label>
+                <Input
+                  type="datetime-local"
+                  value={editScheduledAt}
+                  onChange={(e) => setEditScheduledAt(e.target.value)}
+                  required
+                />
+              </div>
+
+              <div className="space-y-1.5 pt-1">
                 <label className="text-xs font-medium">Minggu (Week)</label>
                 <Input
                   type="number"
@@ -717,7 +731,7 @@ export default function Matches() {
             <DialogFooter className="mt-6" showCloseButton>
               <Button type="submit" disabled={saving} size="sm">
                 {saving ? <Loader2 className="animate-spin" /> : <Save />}
-                Simpan Skor
+                Simpan Perubahan
               </Button>
             </DialogFooter>
           </form>
