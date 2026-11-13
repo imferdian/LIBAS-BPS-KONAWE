@@ -505,9 +505,17 @@ export default function Matches() {
       toast.error(`Gagal: ${error.message}`);
     } else {
       setEditMatch(null);
-      toast.success("Skor berhasil diperbarui");
+      toast.success("Perubahan berhasil disimpan");
       await loadMatches();
     }
+  }
+
+  function handleResetScores() {
+    setEditSet1T1("");
+    setEditSet1T2("");
+    setEditSet2T1("");
+    setEditSet2T2("");
+    toast.info("Skor dikosongkan. Silakan atur ulang jadwal.");
   }
 
   async function handleDelete(id: string) {
@@ -728,7 +736,16 @@ export default function Matches() {
               </div>
             </div>
 
-            <DialogFooter className="mt-6" showCloseButton>
+            <DialogFooter className="mt-6 flex justify-between gap-2" showCloseButton>
+              <Button 
+                type="button" 
+                variant="outline" 
+                size="sm" 
+                className="text-destructive hover:bg-destructive/10"
+                onClick={handleResetScores}
+              >
+                Reset Hasil
+              </Button>
               <Button type="submit" disabled={saving} size="sm">
                 {saving ? <Loader2 className="animate-spin" /> : <Save />}
                 Simpan Perubahan
